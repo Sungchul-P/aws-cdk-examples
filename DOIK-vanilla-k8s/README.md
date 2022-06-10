@@ -31,10 +31,17 @@ cdk bootstrap aws://ACCOUNT-NUMBER/REGION
 
 ### 배포 명령어 예시
 
-스택 기본 이름은 **myk8s** 입니다. 변경하려면 bin/doik-vanilla-k8s.ts 파일의 stackName을 수정하시면 됩니다.
+스택 기본 이름은 **myk8s** 입니다. 변경하려면 bin/doik-vanilla-k8s.ts 파일의 stackName을 수정하시면 됩니다.  
+배포 시, 보안 그룹(Security Group)의 변경에 대해 확인을 요청하는데 구성 확인 후 'y'를 입력하여 진행하면 됩니다.
 
 ```bash
 cdk deploy --parameters KubernetesVersion=1.23.6 \
 --parameters SgIngressCidr=0.0.0.0/32 \
 --parameters KeyName=doik-study-keypair	
+```
+
+### 자원 삭제
+
+```bash
+cdk destroy
 ```
