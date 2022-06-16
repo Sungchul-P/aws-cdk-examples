@@ -1,0 +1,484 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Placeholder Empty 1`] = `
+Array [
+  Object {
+    "apiVersion": "rbac.authorization.k8s.io/v1",
+    "kind": "Role",
+    "metadata": Object {
+      "name": "percona-server-mongodb-operator",
+    },
+    "rules": Array [
+      Object {
+        "apiGroups": Array [
+          "psmdb.percona.com",
+        ],
+        "resources": Array [
+          "perconaservermongodbs",
+          "perconaservermongodbs/status",
+          "perconaservermongodbbackups",
+          "perconaservermongodbbackups/status",
+          "perconaservermongodbrestores",
+          "perconaservermongodbrestores/status",
+        ],
+        "verbs": Array [
+          "get",
+          "list",
+          "watch",
+          "create",
+          "update",
+          "patch",
+          "delete",
+        ],
+      },
+      Object {
+        "apiGroups": Array [
+          "",
+        ],
+        "resources": Array [
+          "pods",
+          "pods/exec",
+          "services",
+          "persistentvolumeclaims",
+          "secrets",
+          "configmaps",
+        ],
+        "verbs": Array [
+          "get",
+          "list",
+          "watch",
+          "create",
+          "update",
+          "patch",
+          "delete",
+        ],
+      },
+      Object {
+        "apiGroups": Array [
+          "apps",
+        ],
+        "resources": Array [
+          "deployments",
+          "replicasets",
+          "statefulsets",
+        ],
+        "verbs": Array [
+          "get",
+          "list",
+          "watch",
+          "create",
+          "update",
+          "patch",
+          "delete",
+        ],
+      },
+      Object {
+        "apiGroups": Array [
+          "batch",
+        ],
+        "resources": Array [
+          "cronjobs",
+        ],
+        "verbs": Array [
+          "get",
+          "list",
+          "watch",
+          "create",
+          "update",
+          "patch",
+          "delete",
+        ],
+      },
+      Object {
+        "apiGroups": Array [
+          "policy",
+        ],
+        "resources": Array [
+          "poddisruptionbudgets",
+        ],
+        "verbs": Array [
+          "get",
+          "list",
+          "watch",
+          "create",
+          "update",
+          "patch",
+          "delete",
+        ],
+      },
+      Object {
+        "apiGroups": Array [
+          "coordination.k8s.io",
+        ],
+        "resources": Array [
+          "leases",
+        ],
+        "verbs": Array [
+          "get",
+          "list",
+          "watch",
+          "create",
+          "update",
+          "patch",
+          "delete",
+        ],
+      },
+      Object {
+        "apiGroups": Array [
+          "",
+        ],
+        "resources": Array [
+          "events",
+        ],
+        "verbs": Array [
+          "create",
+          "patch",
+        ],
+      },
+      Object {
+        "apiGroups": Array [
+          "certmanager.k8s.io",
+          "cert-manager.io",
+        ],
+        "resources": Array [
+          "issuers",
+          "certificates",
+        ],
+        "verbs": Array [
+          "get",
+          "list",
+          "watch",
+          "create",
+          "update",
+          "patch",
+          "delete",
+          "deletecollection",
+        ],
+      },
+      Object {
+        "apiGroups": Array [
+          "net.gke.io",
+          "multicluster.x-k8s.io",
+        ],
+        "resources": Array [
+          "serviceexports",
+          "serviceimports",
+        ],
+        "verbs": Array [
+          "get",
+          "list",
+          "watch",
+          "create",
+          "update",
+          "patch",
+          "delete",
+          "deletecollection",
+        ],
+      },
+    ],
+  },
+  Object {
+    "apiVersion": "v1",
+    "kind": "ServiceAccount",
+    "metadata": Object {
+      "name": "percona-server-mongodb-operator",
+    },
+  },
+  Object {
+    "apiVersion": "rbac.authorization.k8s.io/v1",
+    "kind": "RoleBinding",
+    "metadata": Object {
+      "name": "service-account-percona-server-mongodb-operator",
+    },
+    "roleRef": Object {
+      "apiGroup": "rbac.authorization.k8s.io",
+      "kind": "Role",
+      "name": "percona-server-mongodb-operator",
+    },
+    "subjects": Array [
+      Object {
+        "kind": "ServiceAccount",
+        "name": "percona-server-mongodb-operator",
+      },
+    ],
+  },
+  Object {
+    "apiVersion": "apps/v1",
+    "kind": "Deployment",
+    "metadata": Object {
+      "name": "percona-server-mongodb-operator",
+    },
+    "spec": Object {
+      "replicas": 1,
+      "selector": Object {
+        "matchLabels": Object {
+          "name": "percona-server-mongodb-operator",
+        },
+      },
+      "template": Object {
+        "metadata": Object {
+          "labels": Object {
+            "name": "percona-server-mongodb-operator",
+          },
+        },
+        "spec": Object {
+          "containers": Array [
+            Object {
+              "command": Array [
+                "percona-server-mongodb-operator",
+              ],
+              "env": Array [
+                Object {
+                  "name": "WATCH_NAMESPACE",
+                  "valueFrom": Object {
+                    "fieldRef": Object {
+                      "fieldPath": "metadata.namespace",
+                    },
+                  },
+                },
+                Object {
+                  "name": "POD_NAME",
+                  "valueFrom": Object {
+                    "fieldRef": Object {
+                      "fieldPath": "metadata.name",
+                    },
+                  },
+                },
+                Object {
+                  "name": "OPERATOR_NAME",
+                  "value": "percona-server-mongodb-operator",
+                },
+                Object {
+                  "name": "RESYNC_PERIOD",
+                  "value": "5s",
+                },
+                Object {
+                  "name": "LOG_VERBOSE",
+                  "value": "false",
+                },
+              ],
+              "image": "percona/percona-server-mongodb-operator:1.12.0",
+              "imagePullPolicy": "Always",
+              "name": "percona-server-mongodb-operator",
+              "ports": Array [
+                Object {
+                  "containerPort": 60000,
+                  "name": "metrics",
+                  "protocol": "TCP",
+                },
+              ],
+            },
+          ],
+          "nodeSelector": Object {
+            "kubernetes.io/hostname": "k8s-m",
+          },
+          "serviceAccountName": "percona-server-mongodb-operator",
+          "tolerations": Array [
+            Object {
+              "effect": "NoSchedule",
+              "key": "node-role.kubernetes.io/master",
+              "operator": "Exists",
+            },
+          ],
+        },
+      },
+    },
+  },
+  Object {
+    "apiVersion": "v1",
+    "kind": "Secret",
+    "metadata": Object {
+      "name": "test-chart-secrets",
+    },
+    "stringData": Object {
+      "MONGODB_BACKUP_PASSWORD": "backup123456",
+      "MONGODB_BACKUP_USER": "backup",
+      "MONGODB_CLUSTER_ADMIN_PASSWORD": "clusterAdmin123456",
+      "MONGODB_CLUSTER_ADMIN_USER": "clusterAdmin",
+      "MONGODB_CLUSTER_MONITOR_PASSWORD": "clusterMonitor123456",
+      "MONGODB_CLUSTER_MONITOR_USER": "clusterMonitor",
+      "MONGODB_USER_ADMIN_PASSWORD": "userAdmin123456",
+      "MONGODB_USER_ADMIN_USER": "userAdmin",
+      "PMM_SERVER_PASSWORD": "admin",
+      "PMM_SERVER_USER": "admin",
+    },
+    "type": "Opaque",
+  },
+  Object {
+    "apiVersion": "psmdb.percona.com/v1-12-0",
+    "kind": "PerconaServerMongoDB",
+    "metadata": Object {
+      "finalizers": Array [
+        "delete-psmdb-pods-in-order",
+      ],
+      "name": "test-chart-db",
+    },
+    "spec": Object {
+      "allowUnsafeConfigurations": false,
+      "backup": Object {
+        "enabled": false,
+        "image": "percona/percona-backup-mongodb:1.7.0",
+        "pitr": Object {
+          "compressionLevel": 6,
+          "compressionType": "gzip",
+          "enabled": false,
+        },
+        "serviceAccountName": "percona-server-mongodb-operator",
+      },
+      "crVersion": "1.12.0",
+      "image": "percona/percona-server-mongodb:5.0.7-6",
+      "imagePullPolicy": "Always",
+      "pmm": Object {
+        "enabled": false,
+        "image": "percona/pmm-client:2.27.0",
+        "serverHost": "monitoring-service",
+      },
+      "replsets": Array [
+        Object {
+          "arbiter": Object {
+            "affinity": Object {
+              "antiAffinityTopologyKey": "kubernetes.io/hostname",
+            },
+            "enabled": false,
+            "size": 1,
+          },
+          "expose": Object {
+            "enabled": false,
+            "exposeType": "ClusterIP",
+          },
+          "name": "rs0",
+          "nonvoting": Object {
+            "affinity": Object {
+              "antiAffinityTopologyKey": "kubernetes.io/hostname",
+            },
+            "enabled": false,
+            "podDisruptionBudget": Object {
+              "maxUnavailable": 1,
+            },
+            "resources": Object {
+              "limits": Object {
+                "cpu": "300m",
+                "memory": "0.5G",
+              },
+              "requests": Object {
+                "cpu": "300m",
+                "memory": "0.5G",
+              },
+            },
+            "size": 3,
+            "volumeSpec": Object {
+              "emptyDir": Object {},
+              "hostPath": Object {
+                "path": "/data",
+                "type": "Directory",
+              },
+              "persistentVolumeClaim": Object {
+                "accessModes": Array [
+                  "ReadWriteOnce",
+                ],
+                "resources": Object {
+                  "requests": Object {
+                    "storage": "5Gi",
+                  },
+                },
+                "storageClassName": "standard",
+              },
+            },
+          },
+          "podDisruptionBudget": Object {
+            "maxUnavailable": 1,
+          },
+          "resources": Object {
+            "limits": Object {
+              "cpu": "300m",
+              "memory": "0.5G",
+            },
+            "requests": Object {
+              "cpu": "300m",
+              "memory": "0.5G",
+            },
+          },
+          "size": 3,
+          "volumeSpec": Object {
+            "persistentVolumeClaim": Object {
+              "resources": Object {
+                "requests": Object {
+                  "storage": "5Gi",
+                },
+              },
+            },
+          },
+        },
+      ],
+      "secrets": Object {
+        "encryptionKey": "test-chart-mongodb-encryption-key",
+        "users": "test-chart-secrets",
+      },
+      "sharding": Object {
+        "configsvrReplSet": Object {
+          "affinity": Object {
+            "antiAffinityTopologyKey": "kubernetes.io/hostname",
+          },
+          "expose": Object {
+            "enabled": false,
+            "exposeType": "ClusterIP",
+          },
+          "podDisruptionBudget": Object {
+            "maxUnavailable": 1,
+          },
+          "resources": Object {
+            "limits": Object {
+              "cpu": "300m",
+              "memory": "0.5G",
+            },
+            "requests": Object {
+              "cpu": "300m",
+              "memory": "0.5G",
+            },
+          },
+          "size": 3,
+          "volumeSpec": Object {
+            "persistentVolumeClaim": Object {
+              "resources": Object {
+                "requests": Object {
+                  "storage": "5Gi",
+                },
+              },
+            },
+          },
+        },
+        "enabled": false,
+        "mongos": Object {
+          "affinity": Object {
+            "antiAffinityTopologyKey": "kubernetes.io/hostname",
+          },
+          "expose": Object {
+            "exposeType": "ClusterIP",
+          },
+          "podDisruptionBudget": Object {
+            "maxUnavailable": 1,
+          },
+          "resources": Object {
+            "limits": Object {
+              "cpu": "300m",
+              "memory": "0.5G",
+            },
+            "requests": Object {
+              "cpu": "300m",
+              "memory": "0.5G",
+            },
+          },
+          "size": 3,
+        },
+      },
+      "updateStrategy": "SmartUpdate",
+      "upgradeOptions": Object {
+        "apply": "5.0-recommended",
+        "schedule": "0 2 * * *",
+        "setFCV": false,
+        "versionServiceEndpoint": "https://check.percona.com",
+      },
+    },
+  },
+]
+`;
