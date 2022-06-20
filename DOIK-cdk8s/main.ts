@@ -4,8 +4,11 @@ import { PsmdbOperatorChart } from './construct/psmdb/psmdb-operator'
 
 const app = new App({
   outputFileExtension: '.yaml',
-  yamlOutputType: YamlOutputType.FOLDER_PER_CHART_FILE_PER_RESOURCE
+  yamlOutputType: YamlOutputType.FILE_PER_CHART
 });
-new MongoDbChart(app, 'psmdb');
-new PsmdbOperatorChart(app, 'psmdb-operator');
+const mongoDb = new MongoDbChart(app, 'psmdb');
+const psmdbOperator = new PsmdbOperatorChart(app, 'psmdb-operator');
+
+mongoDb.addDependency(psmdbOperator);
+
 app.synth();
