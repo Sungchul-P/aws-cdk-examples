@@ -2,4 +2,4 @@ language: typescript
 app: node main.js
 imports:
   - k8s
-  - psmdb:=./crds/psmdb.yaml
+  - psmdb:=./crds/psmdb-v1-12.yaml

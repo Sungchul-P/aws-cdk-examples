@@ -1,4 +1,4 @@
-import {MongoDbChart} from './main';
+import {MongoDbChart} from './construct/psmdb/psmdb';
 import {Testing} from 'cdk8s';
 
 describe('Placeholder', () => {
